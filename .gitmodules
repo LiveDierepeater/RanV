@@ -1,0 +1,3 @@
+[submodule "RanV/vendor/spdlog"]
+	path = RanV/vendor/spdlog
+	url = https://github.com/gabime/spdlog
