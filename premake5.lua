@@ -17,6 +17,9 @@ project "RanV"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	pchheader "ranvpch.h"
+	pchsource "RanV/src/ranvpch.cpp"
 	
 	files
 	{

@@ -1,3 +1,4 @@
+#include "ranvpch.h"
 #include "Application.h"
 
 #include "RanV/Events/ApplicationEvent.h"
@@ -18,7 +19,7 @@ namespace RanV {
 	void Application::Run()
 	{
 		WindowResizeEvent e(1280, 720);
-		RANV_TRACE(e);
+		RANV_TRACE(e.ToString());
 
 		while (true);
 	}

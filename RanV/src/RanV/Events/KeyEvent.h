@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace RanV {
 
 	class RANV_API KeyEvent : public Event

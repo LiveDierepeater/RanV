@@ -1,9 +1,7 @@
 #pragma once
 
+#include "ranvpch.h"
 #include "RanV/Core.h"
-
-#include <string>
-#include <functional>
 
 namespace RanV {
 
