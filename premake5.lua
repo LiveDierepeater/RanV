@@ -10,6 +10,12 @@ workspace "RanV"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "RanV/vendor/GLFW/include"
+
+include "RanV/vendor/GLFW"
+
 project "RanV"
 	location "RanV"
 	kind "SharedLib"
@@ -30,19 +36,26 @@ project "RanV"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
-		buildoptions "/utf-8"
 
 		defines
 		{
 			"RANV_PLATFORM_WINDOWS",
-			"RANV_BUILD_DLL"
+			"RANV_BUILD_DLL",
+			"RANV_ENABLE_ASSERTS"
 		}
 
 		postbuildcommands
@@ -53,19 +66,31 @@ project "RanV"
 	filter "configurations:Debug"
 		defines "RANV_DEBUG"
 		symbols "On"
+		buildoptions
+		{
+			"/utf-8",
+			"/MDd"
+		}
 
 	filter "configurations:Release"
 		defines "RANV_RELEASE"
 		optimize "On"
+		buildoptions
+		{
+			"/utf-8",
+			"/MD"
+		}
 
 	filter "configurations:Dist"
 		defines "RANV_DIST"
 		optimize "On"
+		buildoptions "/utf-8"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	buildoptions "/utf-8"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -91,7 +116,6 @@ project "Sandbox"
 		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
-		buildoptions "/utf-8"
 
 		defines
 		{
