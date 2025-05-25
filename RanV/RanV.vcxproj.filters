@@ -4,6 +4,9 @@
     <Filter Include="RanV">
       <UniqueIdentifier>{BCB18B7C-A8E8-8C0D-51D5-72103DEB080F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RanV\Events">
+      <UniqueIdentifier>{20922862-8C47-A157-153C-9B2E81F0975B}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\RanV.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\RanV\EntryPoint.h">
       <Filter>RanV</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RanV\Events\ApplicationEvent.h">
+      <Filter>RanV\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RanV\Events\Event.h">
+      <Filter>RanV\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RanV\Events\KeyEvent.h">
+      <Filter>RanV\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RanV\Events\MouseEvent.h">
+      <Filter>RanV\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\RanV\Log.h">
       <Filter>RanV</Filter>

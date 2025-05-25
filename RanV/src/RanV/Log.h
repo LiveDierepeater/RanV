@@ -4,6 +4,7 @@
 
 #include "Core.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
 
 namespace RanV {
 
@@ -29,8 +30,8 @@ namespace RanV {
 #define RANV_CORE_CRITICAL(...) ::RanV::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
-#define RANV_CORE_TRACE(...)    ::RanV::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define RANV_CORE_INFO(...)     ::RanV::Log::GetClientLogger()->info(__VA_ARGS__)
-#define RANV_CORE_WARN(...)     ::RanV::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define RANV_CORE_ERROR(...)    ::RanV::Log::GetClientLogger()->error(__VA_ARGS__)
-#define RANV_CORE_CRITICAL(...) ::RanV::Log::GetClientLogger()->critical(__VA_ARGS__)
+#define RANV_TRACE(...)    ::RanV::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define RANV_INFO(...)     ::RanV::Log::GetClientLogger()->info(__VA_ARGS__)
+#define RANV_WARN(...)     ::RanV::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define RANV_ERROR(...)    ::RanV::Log::GetClientLogger()->error(__VA_ARGS__)
+#define RANV_CRITICAL(...) ::RanV::Log::GetClientLogger()->critical(__VA_ARGS__)
