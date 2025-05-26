@@ -3,6 +3,8 @@
 #include "ranvpch.h"
 #include "RanV/Core.h"
 
+#include "spdlog/fmt/bundled/format.h"
+
 namespace RanV {
 
 	// Events in RanV are currently blocking, meaning when an event occurs it
@@ -77,3 +79,17 @@ namespace RanV {
 
 	inline std::ostream& operator<<(std::ostream& os, const Event& e) { return os << e.ToString(); }
 }
+
+template <>
+struct fmt::formatter<RanV::Event> {
+	// Parses format specs (e.g. alignment), unused in this case
+	constexpr auto parse(format_parse_context& ctx) {
+		return ctx.begin();
+	}
+
+	// Format an Event using its ToString() method
+	template <typename FormatContext>
+	auto format(const RanV::Event& evt, FormatContext& ctx) const {
+		return format_to(ctx.out(), "{}", evt.ToString());
+	}
+};
