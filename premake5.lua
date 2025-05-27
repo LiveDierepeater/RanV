@@ -13,6 +13,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "RanV/vendor/GLFW/include"
+IncludeDir["glm"] = "RanV/vendor/glm"
 
 include "RanV/vendor/GLFW"
 
@@ -37,7 +38,8 @@ project "RanV"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
