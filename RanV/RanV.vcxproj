@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>ranvpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>RANV_PLATFORM_WINDOWS;RANV_BUILD_DLL;RANV_ENABLE_ASSERTS;RANV_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glm;vendor\vulkan\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -91,11 +91,13 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>vendor\vulkan\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Debug-windows-x86_64\RanV\RanV.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST "..\..\bin\Debug-windows-x86_64\RanV\RanV.dll %[ .. outputdir .. \Sandbox"\ (xcopy /Q /E /Y /I "..\..\bin\Debug-windows-x86_64\RanV\RanV.dll %[ .. outputdir .. \Sandbox"] &gt; nul) ELSE (xcopy /Q /Y /I "..\..\bin\Debug-windows-x86_64\RanV\RanV.dll %[ .. outputdir .. \Sandbox"] &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Debug-windows-x86_64\RanV\RanV.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\RanV\RanV.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\RanV\RanV.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)
+IF EXIST %RanV\vendor\vulkan\lib\vulkan-1.lib\ (xcopy /Q /E /Y /I %RanV\vendor\vulkan\lib\vulkan-1.lib ..\function: 0311F238\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I %RanV\vendor\vulkan\lib\vulkan-1.lib ..\function: 0311F238\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -104,7 +106,7 @@
       <PrecompiledHeaderFile>ranvpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>RANV_PLATFORM_WINDOWS;RANV_BUILD_DLL;RANV_ENABLE_ASSERTS;RANV_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glm;vendor\vulkan\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -119,11 +121,13 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>vendor\vulkan\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Release-windows-x86_64\RanV\RanV.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST "..\..\bin\Release-windows-x86_64\RanV\RanV.dll %[ .. outputdir .. \Sandbox"\ (xcopy /Q /E /Y /I "..\..\bin\Release-windows-x86_64\RanV\RanV.dll %[ .. outputdir .. \Sandbox"] &gt; nul) ELSE (xcopy /Q /Y /I "..\..\bin\Release-windows-x86_64\RanV\RanV.dll %[ .. outputdir .. \Sandbox"] &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Release-windows-x86_64\RanV\RanV.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\RanV\RanV.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\RanV\RanV.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul)
+IF EXIST %RanV\vendor\vulkan\lib\vulkan-1.lib\ (xcopy /Q /E /Y /I %RanV\vendor\vulkan\lib\vulkan-1.lib ..\function: 0311F238\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I %RanV\vendor\vulkan\lib\vulkan-1.lib ..\function: 0311F238\Release-windows-x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -132,7 +136,7 @@
       <PrecompiledHeaderFile>ranvpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>RANV_PLATFORM_WINDOWS;RANV_BUILD_DLL;RANV_ENABLE_ASSERTS;RANV_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glm;vendor\vulkan\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -147,11 +151,13 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>vendor\vulkan\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Dist-windows-x86_64\RanV\RanV.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST "..\..\bin\Dist-windows-x86_64\RanV\RanV.dll %[ .. outputdir .. \Sandbox"\ (xcopy /Q /E /Y /I "..\..\bin\Dist-windows-x86_64\RanV\RanV.dll %[ .. outputdir .. \Sandbox"] &gt; nul) ELSE (xcopy /Q /Y /I "..\..\bin\Dist-windows-x86_64\RanV\RanV.dll %[ .. outputdir .. \Sandbox"] &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Dist-windows-x86_64\RanV\RanV.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\RanV\RanV.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\RanV\RanV.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul)
+IF EXIST %RanV\vendor\vulkan\lib\vulkan-1.lib\ (xcopy /Q /E /Y /I %RanV\vendor\vulkan\lib\vulkan-1.lib ..\function: 0311F238\Dist-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I %RanV\vendor\vulkan\lib\vulkan-1.lib ..\function: 0311F238\Dist-windows-x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

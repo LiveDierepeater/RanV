@@ -14,6 +14,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "RanV/vendor/GLFW/include"
 IncludeDir["glm"] = "RanV/vendor/glm"
+IncludeDir["vulkan"] = "RanV/vendor/vulkan/include"
 
 include "RanV/vendor/GLFW"
 
@@ -39,13 +40,20 @@ project "RanV"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.vulkan}"
+	}
+
+	libdirs
+	{
+		"%{prj.name}/vendor/vulkan/lib"
 	}
 
 	links
 	{
 		"GLFW",
-		"opengl32.lib"
+		"opengl32.lib",
+		"vulkan-1.lib"
 	}
 
 	filter "system:windows"
@@ -62,7 +70,8 @@ project "RanV"
 
 		postbuildcommands
 		{
-			("{COPY} %[%{cfg.buildtarget.relpath} %[ .. outputdir .. /Sandbox]]")
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox"),
+			("{COPY} %RanV/vendor/vulkan/lib/vulkan-1.lib ../%{targetdir}/" .. outputdir .. "/Sandbox")
 		}
 
 	filter "configurations:Debug"
