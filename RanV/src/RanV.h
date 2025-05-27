@@ -3,6 +3,7 @@
 // For use by RanV applications
 
 #include "RanV/Application.h"
+#include "RanV/Layer.h"
 #include "RanV/Log.h"
 
 // ---Entry Point-------------------------

@@ -60,7 +60,7 @@ project "RanV"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %[%{cfg.buildtarget.relpath} %[ .. outputdir .. /Sandbox]]")
 		}
 
 	filter "configurations:Debug"
@@ -90,7 +90,6 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-	buildoptions "/utf-8"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -125,11 +124,26 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "RANV_DEBUG"
 		symbols "On"
+		buildoptions
+		{
+			"/utf-8",
+			"/MDd"
+		}
 
 	filter "configurations:Release"
 		defines "RANV_RELEASE"
 		optimize "On"
+		buildoptions
+		{
+			"/utf-8",
+			"/MD"
+		}
 
 	filter "configurations:Dist"
 		defines "RANV_DIST"
 		optimize "On"
+		buildoptions
+		{
+			"/utf-8",
+			"/MD"
+		}

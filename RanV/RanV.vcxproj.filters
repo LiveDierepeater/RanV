@@ -40,6 +40,12 @@
     <ClInclude Include="src\RanV\Events\MouseEvent.h">
       <Filter>RanV\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\RanV\Layer.h">
+      <Filter>RanV</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RanV\LayerStack.h">
+      <Filter>RanV</Filter>
+    </ClInclude>
     <ClInclude Include="src\RanV\Log.h">
       <Filter>RanV</Filter>
     </ClInclude>
@@ -53,6 +59,12 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\RanV\Application.cpp">
+      <Filter>RanV</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RanV\Layer.cpp">
+      <Filter>RanV</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RanV\LayerStack.cpp">
       <Filter>RanV</Filter>
     </ClCompile>
     <ClCompile Include="src\RanV\Log.cpp">

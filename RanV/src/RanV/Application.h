@@ -1,10 +1,12 @@
 #pragma once
 
 #include "Core.h"
-#include "Events/Event.h"
-#include "RanV/Events/ApplicationEvent.h"
 
 #include "Window.h"
+#include "RanV/LayerStack.h"
+#include "RanV/Events/Event.h"
+#include "RanV/Events/ApplicationEvent.h"
+
 
 namespace RanV {
 
@@ -19,11 +21,15 @@ namespace RanV {
 		void Run();
 
 		void OnEvent(Event& e);
+
+		void PushLayer(Layer* layer);
+		void PushOverlay(Layer* overlay);
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
-	private:
+
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
+		LayerStack m_LayerStack;
 	};
 
 	// To be defined in CLIENT

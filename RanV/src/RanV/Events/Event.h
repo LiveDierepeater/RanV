@@ -41,6 +41,10 @@ namespace RanV {
 	{
 		friend class EventDispatcher;
 	public:
+		virtual ~Event() = default;
+
+		bool Handled = false;
+
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -50,8 +54,6 @@ namespace RanV {
 		{
 			return GetCategoryFlags() & category;
 		}
-	protected:
-		bool m_Handled = false;
 	};
 
 
@@ -68,7 +70,7 @@ namespace RanV {
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_Handled = func(*(T*)&m_Event);
+				m_Event.Handled = func(*(T*)&m_Event);
 				return true;
 			}
 			return false;
@@ -90,6 +92,7 @@ struct fmt::formatter<RanV::Event> {
 	// Format an Event using its ToString() method
 	template <typename FormatContext>
 	auto format(const RanV::Event& evt, FormatContext& ctx) const {
-		return format_to(ctx.out(), "{}", evt.ToString());
+		const std::string str = evt.ToString();  // explizite Kopie
+		return format_to(ctx.out(), "{}", str);
 	}
 };
