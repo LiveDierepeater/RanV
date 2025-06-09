@@ -1,5 +1,5 @@
 # RanV Engine
-RanV engine is a project in which I am focussing on engine architecture and rendering. And why not starting with vulkan - sound like a god idea right? ...right?
+RanV engine is a project in which I am focussing on learning engine architecture and rendering. And why not starting with vulkan - sound like a god idea right? ...right?
 
 At the moment the first base structure is created. Logging, event handling, input and window creation is built into the first basic version. Game.exe files are generated correctly and are separate from the engine itself. The editor can later use the runtime of the engine and take over the data processing with its own functions, but how far I will pursue the project is still up in the air.
 
